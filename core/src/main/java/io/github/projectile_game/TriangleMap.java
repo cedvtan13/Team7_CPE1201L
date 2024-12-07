@@ -10,6 +10,7 @@ public class TriangleMap extends PhysicsWorld {
     }
 
     public void createTriangleObstacles(){
+        //i was here CEDRICRCIEIF
         createTriangleObstacle(new Vector2(4, 3), new Vector2(2, 2));
         createTriangleObstacle(new Vector2(6.15f, 0.1f), new Vector2(2, .5f));
         createTriangleObstacle(new Vector2(1.8f, 0.1f), new Vector2(2, .5f));
