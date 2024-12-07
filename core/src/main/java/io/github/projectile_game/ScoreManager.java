@@ -49,8 +49,6 @@ public class ScoreManager {
     }
 
     // Update score based on collision and current player
-
-
     public void winCondition(int scorePlayer1, int scorePlayer2, Stage stage){
         if(scorePlayer1 == 5){
             winLabel = new Label("Player 1 Wins!", skin);
