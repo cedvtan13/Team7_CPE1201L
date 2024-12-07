@@ -1,0 +1,31 @@
+Index: core/src/main/java/io/github/projectile_game/ScoreManager.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package io.github.projectile_game;\r\n\r\nimport com.badlogic.gdx.Gdx;\r\nimport com.badlogic.gdx.scenes.scene2d.Stage;\r\nimport com.badlogic.gdx.scenes.scene2d.ui.Label;\r\nimport com.badlogic.gdx.scenes.scene2d.ui.Skin;\r\nimport com.badlogic.gdx.physics.box2d.Body;\r\nimport com.badlogic.gdx.utils.Align;\r\n\r\npublic class ScoreManager {\r\n    private int scorePlayer1 = 0;\r\n    private int scorePlayer2 = 0;\r\n    private Label scoreLabel1, scoreLabel2, winLabel;\r\n\r\n    private Skin skin;\r\n\r\n\r\n\r\n    public ScoreManager(Skin skin) {\r\n        this.skin = skin;\r\n    }\r\n\r\n    public void updateScore(PlayerTurn currentPlayer, Body bodyA, Body bodyB, Ball ball1, Ball ball2) {\r\n\r\n        // Only award score if it's the current player's turn\r\n        if (currentPlayer == PlayerTurn.PLAYER1) {\r\n            if (bodyA == ball2.getBody() || bodyB == ball2.getBody()) {\r\n                scorePlayer2++;  // Player 1 scores\r\n                scoreLabel2.setText(\"Player 2 Score: \" + scorePlayer2);\r\n            }\r\n        } else if (currentPlayer == PlayerTurn.PLAYER2) {\r\n            if (bodyA == ball1.getBody() || bodyB == ball1.getBody()) {\r\n                scorePlayer1++;  // Player 2 scores\r\n                scoreLabel1.setText(\"Player 1 Score: \" + scorePlayer1);\r\n            }\r\n        }\r\n    }\r\n\r\n\r\n\r\n\r\n\r\n\r\n    // Set up score labels\r\n    public void setUpScoreLabels(Stage stage) {\r\n        scoreLabel1 = new Label(\"Player 1 Score: 0\", skin);\r\n        scoreLabel1.setPosition(50, Gdx.graphics.getHeight() - 100);\r\n        scoreLabel1.setAlignment(Align.left);\r\n        stage.addActor(scoreLabel1);\r\n\r\n        scoreLabel2 = new Label(\"Player 2 Score: 0\", skin);\r\n        scoreLabel2.setPosition(450, Gdx.graphics.getHeight() - 100);\r\n        scoreLabel2.setAlignment(Align.left);\r\n        stage.addActor(scoreLabel2);\r\n    }\r\n\r\n    // Update score based on collision and current player\r\n\r\n\r\n    public void winCondition(int scorePlayer1, int scorePlayer2, Stage stage){\r\n        if(scorePlayer1 == 5){\r\n            winLabel = new Label(\"Player 1 Wins!\", skin);\r\n            winLabel.setPosition(100, Gdx.graphics.getHeight() - 100);\r\n            winLabel.setAlignment(Align.left);\r\n            stage.addActor(winLabel);\r\n        }\r\n        else {\r\n            winLabel = new Label(\"Player 2 Wins!\", skin);\r\n            winLabel.setPosition(100, Gdx.graphics.getHeight() - 100);\r\n            winLabel.setAlignment(Align.left);\r\n            stage.addActor(winLabel);\r\n        }\r\n    }\r\n\r\n    public void dispose() {\r\n        skin.dispose();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/core/src/main/java/io/github/projectile_game/ScoreManager.java b/core/src/main/java/io/github/projectile_game/ScoreManager.java
+--- a/core/src/main/java/io/github/projectile_game/ScoreManager.java	(revision ccd5ff6650ccc33536e45e12e16eed37fde10a9e)
++++ b/core/src/main/java/io/github/projectile_game/ScoreManager.java	(date 1733577440721)
+@@ -36,11 +36,6 @@
+         }
+     }
+ 
+-
+-
+-
+-
+-
+     // Set up score labels
+     public void setUpScoreLabels(Stage stage) {
+         scoreLabel1 = new Label("Player 1 Score: 0", skin);
+@@ -55,8 +50,6 @@
+     }
+ 
+     // Update score based on collision and current player
+-
+-
+     public void winCondition(int scorePlayer1, int scorePlayer2, Stage stage){
+         if(scorePlayer1 == 5){
+             winLabel = new Label("Player 1 Wins!", skin);
