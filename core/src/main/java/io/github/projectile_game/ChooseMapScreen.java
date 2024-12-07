@@ -35,24 +35,34 @@ public class ChooseMapScreen implements Screen {
     public void show() {
         try {
             spriteBatch = new SpriteBatch();
-            backgroundTexture = new Texture("background2.png");
+            backgroundTexture = new Texture("background2.png"); // Ensure the background image is correctly loaded
             backgroundSprite = new Sprite(backgroundTexture);
 
+            // Initialize and start music
             backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("Ruby.mp3"));
             backgroundMusic.setLooping(true);
             backgroundMusic.setVolume(0.2f);
             backgroundMusic.play();
 
+            // Initialize the stage and input processor
             stage = new Stage(new ScreenViewport());
-            Gdx.input.setInputProcessor(stage);
+            Gdx.input.setInputProcessor(stage);  // Set the input processor to capture button clicks
 
+            // Load the skin (UI elements)
             skin = new Skin(Gdx.files.internal("uiskin.json"));
 
+            // Create buttons and add listeners
             TextButton triangleMapButton = new TextButton("Triangle Map", skin);
             triangleMapButton.addListener(new ClickListener() {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    game.setScreen(new GameScreen(game, new TriangleMap(new World(new Vector2(0, -9.8f), true))));
+                    try {
+                        System.out.println("Triangle Map button clicked");
+                        game.setScreen(new GameScreen(game, new TriangleMap(new World(new Vector2(0, -9.8f), true))));
+                    } catch (Exception e) {
+                        System.err.println("Error navigating to TriangleMap: " + e.getMessage());
+                        e.printStackTrace();
+                    }
                 }
             });
 
@@ -60,7 +70,13 @@ public class ChooseMapScreen implements Screen {
             randomObstaclesMapButton.addListener(new ClickListener() {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    game.setScreen(new GameScreen(game, new RandomObstaclesMap(new World(new Vector2(0, -9.8f), true))));
+                    try {
+                        System.out.println("Random Obstacles Map button clicked");
+                        game.setScreen(new GameScreen(game, new RandomObstaclesMap(new World(new Vector2(0, -9.8f), true))));
+                    } catch (Exception e) {
+                        System.err.println("Error navigating to RandomObstaclesMap: " + e.getMessage());
+                        e.printStackTrace();
+                    }
                 }
             });
 
@@ -68,15 +84,13 @@ public class ChooseMapScreen implements Screen {
             rotatingPlatformsMapButton.addListener(new ClickListener() {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    game.setScreen(new GameScreen(game, new RotatingPlatformsMap(new World(new Vector2(0, -9.8f), true))));
-                }
-            });
-
-            TextButton structuredObstaclesMapButton = new TextButton("Structured Obstacles Map", skin);
-            structuredObstaclesMapButton.addListener(new ClickListener() {
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    game.setScreen(new GameScreen(game, new StructuredObstaclesMap(new World(new Vector2(0, -9.8f), true))));
+                    try {
+                        System.out.println("Rotating Platforms Map button clicked");
+                        game.setScreen(new GameScreen(game, new RotatingPlatformsMap(new World(new Vector2(0, -9.8f), true))));
+                    } catch (Exception e) {
+                        System.err.println("Error navigating to RotatingPlatformsMap: " + e.getMessage());
+                        e.printStackTrace();
+                    }
                 }
             });
 
@@ -84,10 +98,17 @@ public class ChooseMapScreen implements Screen {
             backButton.addListener(new ClickListener() {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    game.setScreen(new StartMenuScreen(game));
+                    try {
+                        System.out.println("Back button clicked");
+                        game.setScreen(new StartMenuScreen(game));
+                    } catch (Exception e) {
+                        System.err.println("Error navigating to StartMenuScreen: " + e.getMessage());
+                        e.printStackTrace();
+                    }
                 }
             });
 
+            // Arrange buttons in a table
             Table table = new Table();
             table.setFillParent(true);
             table.center();
@@ -97,15 +118,13 @@ public class ChooseMapScreen implements Screen {
             table.row();
             table.add(rotatingPlatformsMapButton).pad(10).width(250).height(50);
             table.row();
-            table.add(structuredObstaclesMapButton).pad(10).width(250).height(50);
-            table.row();
             table.add(backButton).pad(10).width(200).height(50);
 
-            stage.addActor(table);
+            stage.addActor(table);  // Add the table to the stage
 
         } catch (Exception e) {
             System.err.println("Error in ChooseMapScreen show(): " + e.getMessage());
-            Gdx.app.error("ChooseMapScreen", "Error in ChooseMapScreen show()", e);
+            e.printStackTrace();
         }
     }
 
@@ -123,7 +142,7 @@ public class ChooseMapScreen implements Screen {
             stage.draw();
         } catch (Exception e) {
             System.err.println("Error in ChooseMapScreen render(): " + e.getMessage());
-            Gdx.app.error("ChooseMapScreen", "Error in ChooseMapScreen render()", e);
+            e.printStackTrace();
         }
     }
 
@@ -137,18 +156,18 @@ public class ChooseMapScreen implements Screen {
             backgroundMusic.dispose();
         } catch (Exception e) {
             System.err.println("Error in ChooseMapScreen dispose(): " + e.getMessage());
-            Gdx.app.error("ChooseMapScreen", "Error in ChooseMapScreen dispose()", e);
+            e.printStackTrace();
         }
     }
 
     @Override
     public void resize(int width, int height) {
         try {
-            stage.getViewport().update(width, height, true);
-            backgroundSprite.setSize(width, height);
+            stage.getViewport().update(width, height, true);  // Make sure the viewport scales properly
+            backgroundSprite.setSize(width, height);  // Resize the background to fill the screen
         } catch (Exception e) {
             System.err.println("Error in ChooseMapScreen resize(): " + e.getMessage());
-            Gdx.app.error("ChooseMapScreen", "Error in ChooseMapScreen resize()", e);
+            e.printStackTrace();
         }
     }
 
@@ -166,7 +185,7 @@ public class ChooseMapScreen implements Screen {
             }
         } catch (Exception e) {
             System.err.println("Error in ChooseMapScreen hide(): " + e.getMessage());
-            Gdx.app.error("ChooseMapScreen", "Error in ChooseMapScreen hide()", e);
+            e.printStackTrace();
         }
     }
 }
