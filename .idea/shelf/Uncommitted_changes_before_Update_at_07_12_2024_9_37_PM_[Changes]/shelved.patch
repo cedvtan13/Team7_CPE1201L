@@ -1,0 +1,182 @@
+Index: core/src/main/java/io/github/projectile_game/ScoreManager.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package io.github.projectile_game;\r\n\r\nimport com.badlogic.gdx.Gdx;\r\nimport com.badlogic.gdx.scenes.scene2d.Stage;\r\nimport com.badlogic.gdx.scenes.scene2d.ui.Label;\r\nimport com.badlogic.gdx.scenes.scene2d.ui.Skin;\r\nimport com.badlogic.gdx.physics.box2d.Body;\r\nimport com.badlogic.gdx.utils.Align;\r\n\r\npublic class ScoreManager {\r\n    private int scorePlayer1 = 0;\r\n    private int scorePlayer2 = 0;\r\n    private Label scoreLabel1, scoreLabel2;\r\n\r\n    private Skin skin;\r\n\r\n    public ScoreManager(Skin skin) {\r\n        this.skin = skin;\r\n    }\r\n\r\n    public void updateScore(PlayerTurn currentPlayer, Body bodyA, Body bodyB, Ball ball1, Ball ball2) {\r\n        // Only award score if it's the current player's turn\r\n        if (currentPlayer == PlayerTurn.PLAYER1) {\r\n            if (bodyA == ball2.getBody() || bodyB == ball2.getBody()) {\r\n                scorePlayer1++;  // Player 1 scores\r\n                scoreLabel1.setText(\"Player 1 Score: \" + scorePlayer1);\r\n            }\r\n        } else if (currentPlayer == PlayerTurn.PLAYER2) {\r\n            if (bodyA == ball1.getBody() || bodyB == ball1.getBody()) {\r\n                scorePlayer2++;  // Player 2 scores\r\n                scoreLabel2.setText(\"Player 2 Score: \" + scorePlayer2);\r\n            }\r\n        }\r\n    }\r\n\r\n    public int getScore(PlayerTurn player) {\r\n        if (player == PlayerTurn.PLAYER1) {\r\n            return scorePlayer1;\r\n        } else if (player == PlayerTurn.PLAYER2) {\r\n            return scorePlayer2;\r\n        }\r\n        return 0;\r\n    }\r\n\r\n    // Set up score labels\r\n    public void setUpScoreLabels(Stage stage) {\r\n        scoreLabel1 = new Label(\"Player 1 Score: 0\", skin);\r\n        scoreLabel1.setPosition(450, Gdx.graphics.getHeight() - 100);\r\n        scoreLabel1.setAlignment(Align.left);\r\n        stage.addActor(scoreLabel1);\r\n\r\n        scoreLabel2 = new Label(\"Player 2 Score: 0\", skin);\r\n        scoreLabel2.setPosition(50, Gdx.graphics.getHeight() - 100);\r\n        scoreLabel2.setAlignment(Align.left);\r\n        stage.addActor(scoreLabel2);\r\n    }\r\n\r\n    public void dispose() {\r\n        skin.dispose();\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/core/src/main/java/io/github/projectile_game/ScoreManager.java b/core/src/main/java/io/github/projectile_game/ScoreManager.java
+--- a/core/src/main/java/io/github/projectile_game/ScoreManager.java	(revision 67beaad1a465d1ed7f3252821955ecfd65addfea)
++++ b/core/src/main/java/io/github/projectile_game/ScoreManager.java	(date 1733578269297)
+@@ -10,52 +10,69 @@
+ public class ScoreManager {
+     private int scorePlayer1 = 0;
+     private int scorePlayer2 = 0;
+-    private Label scoreLabel1, scoreLabel2;
++    private Label scoreLabel1, scoreLabel2, winLabel;
+ 
+     private Skin skin;
+ 
++
++
+     public ScoreManager(Skin skin) {
+         this.skin = skin;
+     }
+ 
+     public void updateScore(PlayerTurn currentPlayer, Body bodyA, Body bodyB, Ball ball1, Ball ball2) {
++
+         // Only award score if it's the current player's turn
+         if (currentPlayer == PlayerTurn.PLAYER1) {
+             if (bodyA == ball2.getBody() || bodyB == ball2.getBody()) {
+-                scorePlayer1++;  // Player 1 scores
+-                scoreLabel1.setText("Player 1 Score: " + scorePlayer1);
++                scorePlayer2++;  // Player 1 scores
++                scoreLabel2.setText("Player 2 Score: " + scorePlayer2);
+             }
+         } else if (currentPlayer == PlayerTurn.PLAYER2) {
+             if (bodyA == ball1.getBody() || bodyB == ball1.getBody()) {
+-                scorePlayer2++;  // Player 2 scores
+-                scoreLabel2.setText("Player 2 Score: " + scorePlayer2);
++                scorePlayer1++;  // Player 2 scores
++                scoreLabel1.setText("Player 1 Score: " + scorePlayer1);
+             }
+         }
+     }
+ 
+-    public int getScore(PlayerTurn player) {
+-        if (player == PlayerTurn.PLAYER1) {
+-            return scorePlayer1;
+-        } else if (player == PlayerTurn.PLAYER2) {
+-            return scorePlayer2;
+-        }
+-        return 0;
+-    }
++
++
++
++
+ 
+     // Set up score labels
+     public void setUpScoreLabels(Stage stage) {
+         scoreLabel1 = new Label("Player 1 Score: 0", skin);
+-        scoreLabel1.setPosition(450, Gdx.graphics.getHeight() - 100);
++        scoreLabel1.setPosition(50, Gdx.graphics.getHeight() - 100);
+         scoreLabel1.setAlignment(Align.left);
+         stage.addActor(scoreLabel1);
+ 
+         scoreLabel2 = new Label("Player 2 Score: 0", skin);
+-        scoreLabel2.setPosition(50, Gdx.graphics.getHeight() - 100);
++        scoreLabel2.setPosition(450, Gdx.graphics.getHeight() - 100);
+         scoreLabel2.setAlignment(Align.left);
+         stage.addActor(scoreLabel2);
+     }
+ 
++    // Update score based on collision and current player
++
++
++    public void winCondition(int scorePlayer1, int scorePlayer2, Stage stage){
++        if(scorePlayer1 == 5){
++            winLabel = new Label("Player 1 Wins!", skin);
++            winLabel.setPosition(100, Gdx.graphics.getHeight() - 100);
++            winLabel.setAlignment(Align.left);
++            stage.addActor(winLabel);
++        }
++        else {
++            winLabel = new Label("Player 2 Wins!", skin);
++            winLabel.setPosition(100, Gdx.graphics.getHeight() - 100);
++            winLabel.setAlignment(Align.left);
++            stage.addActor(winLabel);
++        }
++    }
++
+     public void dispose() {
+         skin.dispose();
+     }
+-}
+\ No newline at end of file
++}
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"48e1678c-3dbc-43a9-a87c-6aa15b72db96\" name=\"Changes\" comment=\"Merge branch 'main' of https://github.com/cedvtan13/Team7_CPE1201L into updates&#10;&#10;# Conflicts:&#10;#&#9;.gradle/8.10.2/executionHistory/executionHistory.bin&#10;#&#9;.gradle/8.10.2/executionHistory/executionHistory.lock&#10;#&#9;.gradle/8.10.2/fileHashes/fileHashes.bin&#10;#&#9;.gradle/8.10.2/fileHashes/fileHashes.lock&#10;#&#9;.gradle/8.10.2/fileHashes/resourceHashesCache.bin&#10;#&#9;.gradle/buildOutputCleanup/buildOutputCleanup.lock&#10;#&#9;.idea/workspace.xml&#10;#&#9;core/build/libs/core-$projectVersion.jar&#10;#&#9;core/build/tmp/compileJava/previous-compilation-data.bin\">\r\n      <change beforePath=\"$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.bin\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.bin\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.lock\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.lock\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.bin\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.bin\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.lock\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.lock\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.gradle/8.10.2/fileHashes/resourceHashesCache.bin\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.gradle/8.10.2/fileHashes/resourceHashesCache.bin\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/core/build/classes/java/main/io/github/projectile_game/GameScreen.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/core/build/classes/java/main/io/github/projectile_game/GameScreen.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/core/build/classes/java/main/io/github/projectile_game/GameUI.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/core/build/classes/java/main/io/github/projectile_game/GameUI.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/core/build/libs/core-$projectVersion.jar\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/core/build/libs/core-$projectVersion.jar\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/core/build/tmp/compileJava/previous-compilation-data.bin\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/core/build/tmp/compileJava/previous-compilation-data.bin\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/core/src/main/java/io/github/projectile_game/GameScreen.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/core/src/main/java/io/github/projectile_game/GameScreen.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/core/src/main/java/io/github/projectile_game/GameUI.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/core/src/main/java/io/github/projectile_game/GameUI.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ExternalProjectsData\">\r\n    <projectState path=\"$PROJECT_DIR$\">\r\n      <ProjectState />\r\n    </projectState>\r\n  </component>\r\n  <component name=\"ExternalProjectsManager\">\r\n    <system id=\"GRADLE\">\r\n      <state>\r\n        <task path=\"$PROJECT_DIR$/core\">\r\n          <activation />\r\n        </task>\r\n        <task path=\"$PROJECT_DIR$\">\r\n          <activation />\r\n        </task>\r\n        <projects_view>\r\n          <tree_state>\r\n            <expand>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"Team7\" type=\"f1a62948:ProjectNode\" />\r\n              </path>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"Team7\" type=\"f1a62948:ProjectNode\" />\r\n                <item name=\"Tasks\" type=\"e4a08cd1:TasksNode\" />\r\n              </path>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"Team7\" type=\"f1a62948:ProjectNode\" />\r\n                <item name=\"Tasks\" type=\"e4a08cd1:TasksNode\" />\r\n                <item name=\"application\" type=\"c8890929:TasksNode$1\" />\r\n              </path>\r\n            </expand>\r\n            <select />\r\n          </tree_state>\r\n        </projects_view>\r\n      </state>\r\n    </system>\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;cedvtan13&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/cedvtan13/Team7_CPE1201L.git&quot;,\r\n    &quot;accountId&quot;: &quot;e8876fb5-7f8d-4850-8571-a59e02c6e179&quot;\r\n  }\r\n}</component>\r\n  <component name=\"HighlightingSettingsPerFile\">\r\n    <setting file=\"file://$PROJECT_DIR$/core/src/main/java/io/github/projectile_game/GameScreen.java\" root0=\"SKIP_INSPECTION\" />\r\n  </component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;customColor&quot;: &quot;&quot;,\r\n  &quot;associatedIndex&quot;: 5\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2ov50Hj4SDf5gvF74O9h3xJgfKQ\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Gradle.ProjectileGame [run].executor&quot;: &quot;Run&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;updates&quot;,\r\n    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/Kin Marius/IdeaProjects/ProjectileGame2&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.Mappings&quot;\r\n  },\r\n  &quot;keyToStringList&quot;: {\r\n    &quot;ChangesTree.GroupingKeys&quot;: [\r\n      &quot;directory&quot;,\r\n      &quot;module&quot;\r\n    ]\r\n  }\r\n}</component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"ProjectileGame [run]\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\r\n      <ExternalSystemSettings>\r\n        <option name=\"executionName\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\r\n        <option name=\"scriptParameters\" />\r\n        <option name=\"taskDescriptions\">\r\n          <list />\r\n        </option>\r\n        <option name=\"taskNames\">\r\n          <list>\r\n            <option value=\"run\" />\r\n          </list>\r\n        </option>\r\n        <option name=\"vmOptions\" />\r\n      </ExternalSystemSettings>\r\n      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>\r\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\r\n      <DebugAllEnabled>false</DebugAllEnabled>\r\n      <RunAsTest>false</RunAsTest>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Gradle.ProjectileGame [run]\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"48e1678c-3dbc-43a9-a87c-6aa15b72db96\" name=\"Changes\" comment=\"\" />\r\n      <created>1731736985188</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1731736985188</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"yes\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1733545370457</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1733545370457</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"i added a comment\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1733549256297</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1733549256297</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"i added a comment\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1733549276041</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1733549276041</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"new updated random onstacles map\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1733564564969</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1733564564969</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"new updated random onstacles map\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1733565440490</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1733565440490</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"new updated random onstacles map\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1733565458099</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1733565458099</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"new updated random onstacles map\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1733565483331</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1733565483331</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"yes\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1733565864557</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1733565864557</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"yes\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1733568579048</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1733568579048</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"yes\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1733568758586</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1733568758586</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"yes\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1733570260916</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1733570260916</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"yes\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1733577206445</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1733577206445</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"Merge branch 'main' of https://github.com/cedvtan13/Team7_CPE1201L into updates&#10;&#10;# Conflicts:&#10;#&#9;.gradle/8.10.2/executionHistory/executionHistory.bin&#10;#&#9;.gradle/8.10.2/executionHistory/executionHistory.lock&#10;#&#9;.gradle/8.10.2/fileHashes/fileHashes.bin&#10;#&#9;.gradle/8.10.2/fileHashes/fileHashes.lock&#10;#&#9;.gradle/8.10.2/fileHashes/resourceHashesCache.bin&#10;#&#9;.gradle/buildOutputCleanup/buildOutputCleanup.lock&#10;#&#9;.idea/workspace.xml&#10;#&#9;core/build/libs/core-$projectVersion.jar&#10;#&#9;core/build/tmp/compileJava/previous-compilation-data.bin\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1733577252919</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1733577252919</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"14\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"i added a comment\" />\r\n    <MESSAGE value=\"new updated random onstacles map\" />\r\n    <MESSAGE value=\"yes\" />\r\n    <MESSAGE value=\"Merge branch 'main' of https://github.com/cedvtan13/Team7_CPE1201L into updates&#10;&#10;# Conflicts:&#10;#&#9;.gradle/8.10.2/executionHistory/executionHistory.bin&#10;#&#9;.gradle/8.10.2/executionHistory/executionHistory.lock&#10;#&#9;.gradle/8.10.2/fileHashes/fileHashes.bin&#10;#&#9;.gradle/8.10.2/fileHashes/fileHashes.lock&#10;#&#9;.gradle/8.10.2/fileHashes/resourceHashesCache.bin&#10;#&#9;.gradle/buildOutputCleanup/buildOutputCleanup.lock&#10;#&#9;.idea/workspace.xml&#10;#&#9;core/build/libs/core-$projectVersion.jar&#10;#&#9;core/build/tmp/compileJava/previous-compilation-data.bin\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Merge branch 'main' of https://github.com/cedvtan13/Team7_CPE1201L into updates&#10;&#10;# Conflicts:&#10;#&#9;.gradle/8.10.2/executionHistory/executionHistory.bin&#10;#&#9;.gradle/8.10.2/executionHistory/executionHistory.lock&#10;#&#9;.gradle/8.10.2/fileHashes/fileHashes.bin&#10;#&#9;.gradle/8.10.2/fileHashes/fileHashes.lock&#10;#&#9;.gradle/8.10.2/fileHashes/resourceHashesCache.bin&#10;#&#9;.gradle/buildOutputCleanup/buildOutputCleanup.lock&#10;#&#9;.idea/workspace.xml&#10;#&#9;core/build/libs/core-$projectVersion.jar&#10;#&#9;core/build/tmp/compileJava/previous-compilation-data.bin\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 67beaad1a465d1ed7f3252821955ecfd65addfea)
++++ b/.idea/workspace.xml	(date 1733578618728)
+@@ -9,15 +9,15 @@
+       <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.lock" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.bin" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.lock" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/io/github/projectile_game/GameScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/io/github/projectile_game/GameScreen.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/io/github/projectile_game/GameUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/io/github/projectile_game/GameUI.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/io/github/projectile_game/ScoreManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/io/github/projectile_game/ScoreManager.class" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/core/build/libs/core-$projectVersion.jar" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/libs/core-$projectVersion.jar" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/core/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/projectile_game/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/projectile_game/GameScreen.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/projectile_game/GameUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/projectile_game/GameUI.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/projectile_game/ScoreManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/projectile_game/ScoreManager.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/lwjgl3/build/resources/main/assets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lwjgl3/build/resources/main/assets.txt" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -72,6 +72,7 @@
+   </component>
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
++    <option name="UPDATE_TYPE" value="REBASE" />
+   </component>
+   <component name="GitHubPullRequestSearchHistory">{
+   &quot;lastFilter&quot;: {
+@@ -101,27 +102,27 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;Gradle.ProjectileGame [run].executor&quot;: &quot;Run&quot;,
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;updates&quot;,
+-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Kin Marius/IdeaProjects/ProjectileGame2&quot;,
+-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.Mappings&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "Gradle.ProjectileGame [run].executor": "Run",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "RunOnceActivity.git.unshallow": "true",
++    "git-widget-placeholder": "main",
++    "ignore.virus.scanning.warn.message": "true",
++    "kotlin-language-version-configured": "true",
++    "last_opened_file_path": "C:/Users/Kin Marius/IdeaProjects/ProjectileGame2",
++    "project.structure.last.edited": "Modules",
++    "project.structure.proportion": "0.0",
++    "project.structure.side.proportion": "0.0",
++    "settings.editor.selected.configurable": "project.propVCSSupport.Mappings"
+   },
+-  &quot;keyToStringList&quot;: {
+-    &quot;ChangesTree.GroupingKeys&quot;: [
+-      &quot;directory&quot;,
+-      &quot;module&quot;
++  "keyToStringList": {
++    "ChangesTree.GroupingKeys": [
++      "directory",
++      "module"
+     ]
+   }
+-}</component>
++}]]></component>
+   <component name="RunManager">
+     <configuration name="ProjectileGame [run]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+       <ExternalSystemSettings>
