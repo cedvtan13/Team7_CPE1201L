@@ -93,6 +93,7 @@ public class ScoreManager {
     }
 
     public void dispose() {
+        //hello
         skin.dispose();
     }
 }
