@@ -127,13 +127,20 @@ public class GameUI {
         return stage;
     }
 
-    public void dispose() {
-        // Stop and dispose of music when no longer needed
-        if (backgroundMusic != null) {
-            backgroundMusic.stop();
-            backgroundMusic.dispose(); // Dispose the music resource when done
-        }
-        stage.dispose();
-        skin.dispose();
+public void dispose() {
+    // Stop and dispose of music when no longer needed
+    if (backgroundMusic != null) {
+        backgroundMusic.stop();
+        backgroundMusic.dispose(); // Dispose the music resource when done
+        backgroundMusic = null; // Set to null to avoid potential reuse
     }
+    if (stage != null) {
+        stage.dispose();
+        stage = null; // Set to null to avoid potential reuse
+    }
+    if (skin != null) {
+        skin.dispose();
+        skin = null; // Set to null to avoid potential reuse
+    }
+}
 }
