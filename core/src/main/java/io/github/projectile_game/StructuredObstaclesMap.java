@@ -4,11 +4,11 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import java.util.Random;
 
-public class RandomObstaclesMap extends PhysicsWorld {
-    private static final int GRID_ROWS = 3;
-    private static final int GRID_COLUMNS = 3;
+public class StructuredObstaclesMap extends PhysicsWorld {
+    private static final int GRID_ROWS = 2;
+    private static final int GRID_COLUMNS = 2;
     private static final float MIN_SIZE = 0.2f;
-    private static final float MAX_SIZE = 0.7f;
+    private static final float MAX_SIZE = 0.5f;
     private static final float WORLD_WIDTH = 8.0f;
     private static final float WORLD_HEIGHT = 6.0f;
     private static final float DENSITY = 1.0f;
@@ -17,7 +17,7 @@ public class RandomObstaclesMap extends PhysicsWorld {
 
     private final Random random = new Random();
 
-    public RandomObstaclesMap(World world) {
+    public StructuredObstaclesMap(World world) {
         super(world);
         createGridObstacles();
     }
@@ -37,7 +37,7 @@ public class RandomObstaclesMap extends PhysicsWorld {
                 float y = row * cellHeight;
                 float size = getRandomSize();
 
-                switch (random.nextInt(3)) {
+                switch (random.nextInt(4)) {
                     case 0:
                         createCircleObstacle(x, y, size);
                         break;
@@ -46,6 +46,9 @@ public class RandomObstaclesMap extends PhysicsWorld {
                         break;
                     case 2:
                         createTriangleObstacle(x, y, size, size * (random.nextFloat() + 0.5f));
+                        break;
+                    case 3:
+                        createDiagonalObstacle(x, y, size, size * (random.nextFloat() + 0.5f));
                         break;
                 }
             }
@@ -79,6 +82,19 @@ public class RandomObstaclesMap extends PhysicsWorld {
             new Vector2(-width / 2, -height / 2),
             new Vector2(width / 2, -height / 2),
             new Vector2(0, height / 2)
+        });
+        createFixture(body, shape);
+        shape.dispose();
+    }
+
+    private void createDiagonalObstacle(float x, float y, float width, float height) {
+        Body body = createStaticBody(x, y);
+        PolygonShape shape = new PolygonShape();
+        shape.set(new Vector2[]{
+            new Vector2(-width / 2, -height / 2),
+            new Vector2(width / 2, height / 2),
+            new Vector2(width / 2, -height / 2),
+            new Vector2(-width / 2, height / 2)
         });
         createFixture(body, shape);
         shape.dispose();

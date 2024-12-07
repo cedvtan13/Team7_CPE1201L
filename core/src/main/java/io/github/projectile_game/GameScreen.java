@@ -2,6 +2,7 @@ package io.github.projectile_game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -10,8 +11,13 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +35,9 @@ class GameScreen implements Screen, ContactListener {
     private TurnManager turnManager;
     private BallController ballController1, ballController2;
     private Stage stage; // Stage is a member variable
+    private Stage pauseStage;
+    private boolean paused;
+    private Skin skin;
 
     private PlayerTurn currentPlayer = PlayerTurn.PLAYER1;
     private final List<Runnable> tasksQueue = new ArrayList<>();
@@ -39,6 +48,48 @@ class GameScreen implements Screen, ContactListener {
         this.game = game;
         this.physicsWorld = physicsWorld;
         this.stage = new Stage(); // Initialize stage in the constructor
+        this.pauseStage = new Stage(new ScreenViewport());
+        this.skin = new Skin(Gdx.files.internal("uiskin.json"));
+        this.paused = false;
+        createPauseMenu();
+    }
+
+    private void createPauseMenu() {
+        TextButton resumeButton = new TextButton("Resume", skin);
+        resumeButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                paused = false;
+                Gdx.input.setInputProcessor(stage);
+            }
+        });
+
+        TextButton menuButton = new TextButton("Return to Menu", skin);
+        menuButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(new StartMenuScreen(game));
+            }
+        });
+
+        TextButton quitButton = new TextButton("Quit", skin);
+        quitButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.exit();
+            }
+        });
+
+        Table table = new Table();
+        table.setFillParent(true);
+        table.center();
+        table.add(resumeButton).pad(10).width(200).height(50);
+        table.row();
+        table.add(menuButton).pad(10).width(200).height(50);
+        table.row();
+        table.add(quitButton).pad(10).width(200).height(50);
+
+        pauseStage.addActor(table);
     }
 
     @Override
@@ -62,6 +113,8 @@ class GameScreen implements Screen, ContactListener {
             this.physicsWorld = new RandomObstaclesMap(world);
         } else if (physicsWorld instanceof RotatingPlatformsMap) {
             this.physicsWorld = new RotatingPlatformsMap(world);
+        } else if (physicsWorld instanceof StructuredObstaclesMap) {
+            this.physicsWorld = new StructuredObstaclesMap(world);
         } else {
             this.physicsWorld = new PhysicsWorld(world);
         }
@@ -78,7 +131,6 @@ class GameScreen implements Screen, ContactListener {
         ball2.createBall(world, 7, 1, 0.075f);
 
         Gdx.input.setInputProcessor(stage);
-        Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
         gameUI = new GameUI(stage, skin); // Initialize gameUI with the stage
         scoreManager = new ScoreManager(skin);
 
@@ -94,6 +146,23 @@ class GameScreen implements Screen, ContactListener {
 
     @Override
     public void render(float delta) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+            paused = !paused;
+            if (paused) {
+                Gdx.input.setInputProcessor(pauseStage);
+            } else {
+                Gdx.input.setInputProcessor(stage);
+            }
+        }
+
+        if (paused) {
+            Gdx.gl.glClearColor(0, 0, 0, 1);
+            Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+            pauseStage.act(delta);
+            pauseStage.draw();
+            return;
+        }
+
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         world.step(1 / 60f, 6, 2);
 
@@ -177,5 +246,7 @@ class GameScreen implements Screen, ContactListener {
         gameUI.dispose();
         scoreManager.dispose();
         backgroundTexture.dispose();
+        pauseStage.dispose();
+        skin.dispose();
     }
 }
