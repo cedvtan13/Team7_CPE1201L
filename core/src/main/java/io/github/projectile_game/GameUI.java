@@ -83,9 +83,7 @@ public class GameUI {
     }
 
     public void stopMusic() {
-        if (backgroundMusic != null) {
-            backgroundMusic.stop();
-        }
+        backgroundMusic.stop();
     }
 
     public void addListenerToButton(TextButton button, Runnable action) {
@@ -127,20 +125,14 @@ public class GameUI {
         return stage;
     }
 
-public void dispose() {
-    // Stop and dispose of music when no longer needed
-    if (backgroundMusic != null) {
-        backgroundMusic.stop();
-        backgroundMusic.dispose(); // Dispose the music resource when done
-        backgroundMusic = null; // Set to null to avoid potential reuse
-    }
-    if (stage != null) {
+
+    public void dispose() {
+        // Stop and dispose of music when no longer needed
+        if (backgroundMusic != null) {
+            backgroundMusic.stop();
+            backgroundMusic.dispose(); // Dispose the music resource when done
+        }
         stage.dispose();
-        stage = null; // Set to null to avoid potential reuse
-    }
-    if (skin != null) {
         skin.dispose();
-        skin = null; // Set to null to avoid potential reuse
     }
-}
 }

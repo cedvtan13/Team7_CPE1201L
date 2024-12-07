@@ -133,7 +133,7 @@ class GameScreen implements Screen, ContactListener {
 
         Gdx.input.setInputProcessor(stage);
         gameUI = new GameUI(stage, skin); // Initialize gameUI with the stage
-        scoreManager = new ScoreManager(skin);
+        scoreManager = new ScoreManager(skin, game, gameUI);
 
         gameUI.createUI();
         gameUI.addListenerToButton(gameUI.getLaunchButton1(),
@@ -239,8 +239,18 @@ class GameScreen implements Screen, ContactListener {
     @Override
     public void hide() {}
 
+    public void disposeMapResources() {
+        world.dispose();
+        debugRenderer.dispose();
+        batch.dispose();
+        backgroundTexture.dispose();
+        pauseStage.dispose();
+        skin.dispose();
+    }
+
     @Override
     public void dispose() {
+        disposeMapResources();
         world.dispose();
         debugRenderer.dispose();
         batch.dispose();
