@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="48e1678c-3dbc-43a9-a87c-6aa15b72db96" name="Changes" comment="Merge branch 'main' of https://github.com/cedvtan13/Team7_CPE1201L into updates&#10;&#10;# Conflicts:&#10;#&#9;.gradle/8.10.2/executionHistory/executionHistory.bin&#10;#&#9;.gradle/8.10.2/executionHistory/executionHistory.lock&#10;#&#9;.gradle/8.10.2/fileHashes/fileHashes.bin&#10;#&#9;.gradle/8.10.2/fileHashes/fileHashes.lock&#10;#&#9;.gradle/8.10.2/fileHashes/resourceHashesCache.bin&#10;#&#9;.gradle/buildOutputCleanup/buildOutputCleanup.lock&#10;#&#9;.idea/workspace.xml&#10;#&#9;core/build/libs/core-$projectVersion.jar&#10;#&#9;core/build/tmp/compileJava/previous-compilation-data.bin" />
+    <list default="true" id="48e1678c-3dbc-43a9-a87c-6aa15b72db96" name="Changes" comment="Merge branch 'main' of https://github.com/cedvtan13/Team7_CPE1201L into updates&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;core/src/main/java/io/github/projectile_game/ScoreManager.java">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -279,7 +281,39 @@
       <option name="project" value="LOCAL" />
       <updated>1733582981908</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Merge remote-tracking branch 'origin/updates' into updates&#10;&#10;# Conflicts:&#10;#&#9;.gradle/8.10.2/executionHistory/executionHistory.bin&#10;#&#9;.gradle/8.10.2/executionHistory/executionHistory.lock&#10;#&#9;.gradle/8.10.2/fileHashes/fileHashes.bin&#10;#&#9;.gradle/8.10.2/fileHashes/fileHashes.lock&#10;#&#9;.gradle/8.10.2/fileHashes/resourceHashesCache.bin&#10;#&#9;.gradle/buildOutputCleanup/buildOutputCleanup.lock&#10;#&#9;.idea/workspace.xml&#10;#&#9;core/build/classes/java/main/io/github/projectile_game/ScoreManager.class&#10;#&#9;core/build/libs/core-$projectVersion.jar&#10;#&#9;core/build/tmp/compileJava/previous-compilation-data.bin&#10;#&#9;core/src/main/java/io/github/projectile_game/ScoreManager.java">
+      <option name="closed" value="true" />
+      <created>1733583115952</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1733583115952</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Merge remote-tracking branch 'origin/updates' into updates&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <option name="closed" value="true" />
+      <created>1733583162327</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1733583162327</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Merge remote-tracking branch 'origin/updates' into updates&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <option name="closed" value="true" />
+      <created>1733583196545</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1733583196545</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Merge branch 'main' of https://github.com/cedvtan13/Team7_CPE1201L into updates&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;core/src/main/java/io/github/projectile_game/ScoreManager.java">
+      <option name="closed" value="true" />
+      <created>1733583311261</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1733583311263</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -298,6 +332,9 @@
     <MESSAGE value="new updated random onstacles map" />
     <MESSAGE value="yes" />
     <MESSAGE value="Merge branch 'main' of https://github.com/cedvtan13/Team7_CPE1201L into updates&#10;&#10;# Conflicts:&#10;#&#9;.gradle/8.10.2/executionHistory/executionHistory.bin&#10;#&#9;.gradle/8.10.2/executionHistory/executionHistory.lock&#10;#&#9;.gradle/8.10.2/fileHashes/fileHashes.bin&#10;#&#9;.gradle/8.10.2/fileHashes/fileHashes.lock&#10;#&#9;.gradle/8.10.2/fileHashes/resourceHashesCache.bin&#10;#&#9;.gradle/buildOutputCleanup/buildOutputCleanup.lock&#10;#&#9;.idea/workspace.xml&#10;#&#9;core/build/libs/core-$projectVersion.jar&#10;#&#9;core/build/tmp/compileJava/previous-compilation-data.bin" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'main' of https://github.com/cedvtan13/Team7_CPE1201L into updates&#10;&#10;# Conflicts:&#10;#&#9;.gradle/8.10.2/executionHistory/executionHistory.bin&#10;#&#9;.gradle/8.10.2/executionHistory/executionHistory.lock&#10;#&#9;.gradle/8.10.2/fileHashes/fileHashes.bin&#10;#&#9;.gradle/8.10.2/fileHashes/fileHashes.lock&#10;#&#9;.gradle/8.10.2/fileHashes/resourceHashesCache.bin&#10;#&#9;.gradle/buildOutputCleanup/buildOutputCleanup.lock&#10;#&#9;.idea/workspace.xml&#10;#&#9;core/build/libs/core-$projectVersion.jar&#10;#&#9;core/build/tmp/compileJava/previous-compilation-data.bin" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/updates' into updates&#10;&#10;# Conflicts:&#10;#&#9;.gradle/8.10.2/executionHistory/executionHistory.bin&#10;#&#9;.gradle/8.10.2/executionHistory/executionHistory.lock&#10;#&#9;.gradle/8.10.2/fileHashes/fileHashes.bin&#10;#&#9;.gradle/8.10.2/fileHashes/fileHashes.lock&#10;#&#9;.gradle/8.10.2/fileHashes/resourceHashesCache.bin&#10;#&#9;.gradle/buildOutputCleanup/buildOutputCleanup.lock&#10;#&#9;.idea/workspace.xml&#10;#&#9;core/build/classes/java/main/io/github/projectile_game/ScoreManager.class&#10;#&#9;core/build/libs/core-$projectVersion.jar&#10;#&#9;core/build/tmp/compileJava/previous-compilation-data.bin&#10;#&#9;core/src/main/java/io/github/projectile_game/ScoreManager.java" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/updates' into updates&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
+    <MESSAGE value="Merge branch 'main' of https://github.com/cedvtan13/Team7_CPE1201L into updates&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;core/src/main/java/io/github/projectile_game/ScoreManager.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'main' of https://github.com/cedvtan13/Team7_CPE1201L into updates&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;core/src/main/java/io/github/projectile_game/ScoreManager.java" />
   </component>
 </project>
