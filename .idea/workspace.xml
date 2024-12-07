@@ -12,16 +12,16 @@
       <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/io/github/projectile_game/ChooseMapScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/io/github/projectile_game/ChooseMapScreen.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/io/github/projectile_game/GameUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/io/github/projectile_game/GameUI$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/io/github/projectile_game/GameUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/io/github/projectile_game/GameUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/io/github/projectile_game/TriangleMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/io/github/projectile_game/TriangleMap.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/io/github/projectile_game/StartMenuScreen$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/io/github/projectile_game/StartMenuScreen$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/io/github/projectile_game/StartMenuScreen$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/io/github/projectile_game/StartMenuScreen$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/io/github/projectile_game/StartMenuScreen$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/io/github/projectile_game/StartMenuScreen$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/io/github/projectile_game/StartMenuScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/io/github/projectile_game/StartMenuScreen.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/build/libs/core-$projectVersion.jar" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/libs/core-$projectVersion.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/projectile_game/ChooseMapScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/projectile_game/ChooseMapScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/projectile_game/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/projectile_game/GameScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/projectile_game/GameUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/projectile_game/GameUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/projectile_game/TriangleMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/projectile_game/TriangleMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/projectile_game/StartMenuScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/projectile_game/StartMenuScreen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -73,12 +73,18 @@ public class GameUI {
             // Load the background music file
             backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("Pokemon.mp3"));
             backgroundMusic.setLooping(true); // Set music to loop
-            backgroundMusic.setVolume(0.5f); // Adjust volume to a reasonable level
+            backgroundMusic.setVolume(0.2f); // Adjust volume to a reasonable level
             backgroundMusic.play(); // Start playing the music
             System.out.println("Background music is playing.");
         } catch (Exception e) {
             System.err.println("Error loading or playing music: " + e.getMessage());
             e.printStackTrace(); // Log the error for debugging
+        }
+    }
+
+    public void stopMusic() {
+        if (backgroundMusic != null) {
+            backgroundMusic.stop();
         }
     }
 

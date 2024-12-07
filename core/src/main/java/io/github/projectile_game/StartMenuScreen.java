@@ -40,6 +40,7 @@ public class StartMenuScreen implements Screen {
         // Initialize and start music
         backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("Ruby.mp3"));
         backgroundMusic.setLooping(true);
+        backgroundMusic.setVolume(0.2f);
         backgroundMusic.play();
 
         stage = new Stage(new ScreenViewport());
