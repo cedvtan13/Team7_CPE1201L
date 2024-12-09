@@ -23,8 +23,8 @@ public class RotatingPlatformsMap extends PhysicsWorld {
         createRotatingPlatform(5.5f, 2f, 0.1f, .7f, 1f);
 
         //To stop for easy points
-        createRotatingPlatform(4f, 2f, 0.1f, 2f, 2f);
-        createRotatingPlatform(4f, 2f, 0.1f, 2f, -2f);
+        createRotatingPlatform(4f, .5f, 0.1f, 2f, 2f);
+        createRotatingPlatform(4f, .5f, 0.1f, 2f, -2f);
         createRotatingPlatform(4.6f, 4.5f, .3f, 1.2f, 2f);
         createRotatingPlatform(3.4f, 4.5f, .3f, 1.2f, -2f);
 

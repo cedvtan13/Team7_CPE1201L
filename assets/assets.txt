@@ -6,6 +6,7 @@ background2.png
 background3.png
 ball.png
 default.fnt
+hs_err_pid18328.log
 hs_err_pid20608.log
 libgdx.png
 uiskin.atlas
