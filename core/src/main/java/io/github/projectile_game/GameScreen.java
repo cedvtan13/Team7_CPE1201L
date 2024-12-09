@@ -195,8 +195,10 @@ class GameScreen implements Screen, ContactListener {
         Body bodyA = contact.getFixtureA().getBody();
         Body bodyB = contact.getFixtureB().getBody();
 
-        Gdx.app.log("Collision", "Body A: " + bodyA + ", Body B: " + bodyB);
-        Gdx.app.log("Current Player", "Current Player: " + turnManager.getCurrentPlayer());  // Log the current player
+        //this is for debugging purposes
+
+        //Gdx.app.log("Collision", "Body A: " + bodyA + ", Body B: " + bodyB);
+        //Gdx.app.log("Current Player", "Current Player: " + turnManager.getCurrentPlayer());  // Log the current player
 
         // Detect collision between the two balls and update the score only if it's the current player's turn
         if ((bodyA == ball1.getBody() && bodyB == ball2.getBody()) || (bodyA == ball2.getBody() && bodyB == ball1.getBody())) {
