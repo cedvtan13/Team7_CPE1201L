@@ -101,7 +101,7 @@ public class PhysicsWorld {
 
         FixtureDef wallFixture = new FixtureDef();
         wallFixture.shape = wallShape;
-        wallFixture.density = 1.0f;
+        wallFixture.density = DENSITY;
 
         middleWall = world.createBody(wallDef);
         middleWall.createFixture(wallFixture);
