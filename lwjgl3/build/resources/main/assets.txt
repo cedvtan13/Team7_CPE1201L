@@ -8,6 +8,7 @@ ball.png
 default.fnt
 hs_err_pid18328.log
 hs_err_pid20608.log
+hs_err_pid476.log
 libgdx.png
 uiskin.atlas
 uiskin.json

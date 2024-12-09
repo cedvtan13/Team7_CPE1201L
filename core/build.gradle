@@ -1,12 +1,26 @@
-[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
-eclipse.project.name = appName + '-core'
+plugins {
+  id 'java'
+}
+
+group 'io.github.projectile_game'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 8
+targetCompatibility = 8
+
+repositories {
+  mavenCentral()
+}
 
 dependencies {
-  api "com.badlogicgames.gdx:gdx:$gdxVersion"
-  api "com.github.tommyettinger:libgdx-utils-box2d:$utilsBox2dVersion"
-  api "com.github.tommyettinger:libgdx-utils:$utilsVersion"
+  implementation "com.badlogicgames.gdx:gdx:$gdxVersion"
+  implementation "com.github.tommyettinger:libgdx-utils-box2d:$utilsBox2dVersion"
+  implementation "com.github.tommyettinger:libgdx-utils:$utilsVersion"
 
-  if(enableGraalNative == 'true') {
+  if (enableGraalNative == 'true') {
     implementation "io.github.berstanio:gdx-svmhelper-annotations:$graalHelperVersion"
   }
 }
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+eclipse.project.name = appName + '-core'
