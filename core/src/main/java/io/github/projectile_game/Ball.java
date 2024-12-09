@@ -25,7 +25,7 @@ public class Ball {
             fixtureDef.shape = shape;
             fixtureDef.density = 1.0f;
             fixtureDef.friction = 1.0f; // High friction to slow down balls after collision
-            fixtureDef.restitution = 0.6f; // Bounciness
+            fixtureDef.restitution = .9f; // Bounciness
 
             // Create the body in the world and attach the fixture
             body = world.createBody(bodyDef);
