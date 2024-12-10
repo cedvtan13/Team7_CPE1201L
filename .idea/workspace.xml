@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="48e1678c-3dbc-43a9-a87c-6aa15b72db96" name="Changes" comment="Merge branch 'main' of https://github.com/cedvtan13/Team7_CPE1201L into updates&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;core/src/main/java/io/github/projectile_game/ScoreManager.java">
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/projectile_game/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/projectile_game/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/assets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/assets.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/projectile_game/RandomObstaclesMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/io/github/projectile_game/RandomObstaclesMap.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,22 +94,22 @@
     &quot;assignee&quot;: &quot;cedvtan13&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/cedvtan13/Team7_CPE1201L.git&quot;,
-    &quot;accountId&quot;: &quot;e8876fb5-7f8d-4850-8571-a59e02c6e179&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/cedvtan13/Team7_CPE1201L.git",
+    "accountId": "e92f6a2f-d757-45cb-9162-d7098b5aeefb"
   },
-  &quot;recentNewPullRequestHead&quot;: {
-    &quot;server&quot;: {
-      &quot;useHttp&quot;: false,
-      &quot;host&quot;: &quot;github.com&quot;,
-      &quot;port&quot;: null,
-      &quot;suffix&quot;: null
+  "recentNewPullRequestHead": {
+    "server": {
+      "useHttp": false,
+      "host": "github.com",
+      "port": null,
+      "suffix": null
     },
-    &quot;owner&quot;: &quot;cedvtan13&quot;,
-    &quot;repository&quot;: &quot;Team7_CPE1201L&quot;
+    "owner": "cedvtan13",
+    "repository": "Team7_CPE1201L"
   }
-}</component>
+}]]></component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/core/src/main/java/io/github/projectile_game/GameScreen.java" root0="SKIP_INSPECTION" />
   </component>
@@ -130,7 +133,7 @@
     "Gradle.ProjectileGame [run].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "#14 on updates",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Kin Marius/IdeaProjects/ProjectileGame2",

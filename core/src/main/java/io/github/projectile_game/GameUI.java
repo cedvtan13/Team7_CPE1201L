@@ -46,7 +46,13 @@ public class GameUI {
         angleField2.setHeight(30);
         angleField2.setPosition(550, Gdx.graphics.getHeight() - 50);
 
-        // Add them to the stage
+        // Set placeholder text to indicate input fields for Speed and Angle
+        speedField1.setMessageText("Speed");
+        angleField1.setMessageText("Angle");
+        speedField2.setMessageText("Speed");
+        angleField2.setMessageText("Angle");
+
+        // Add TextFields to the stage
         stage.addActor(speedField1);
         stage.addActor(angleField1);
         stage.addActor(speedField2);
@@ -68,12 +74,13 @@ public class GameUI {
         initializeMusic();
     }
 
+
     private void initializeMusic() {
         try {
             // Load the background music file
             backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("Pokemon.mp3"));
             backgroundMusic.setLooping(true); // Set music to loop
-            backgroundMusic.setVolume(0.2f); // Adjust volume to a reasonable level
+            backgroundMusic.setVolume(0.3f); // Adjust volume to a reasonable level
             backgroundMusic.play(); // Start playing the music
             System.out.println("Background music is playing.");
         } catch (Exception e) {
